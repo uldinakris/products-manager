@@ -43,6 +43,16 @@ private Smartphone smartphoneItem = new Smartphone(5, "iPhone", 150000, "Apple")
     }
 
     @Test
+    public void shouldNotFindById() {
+        repository.add(bookItem);
+        repository.add(smartphoneItem);
+
+        Product expected = null;
+        Product actual = repository.findById(52);
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldRemoveById() {
         repository.add(bookItem);
         repository.add(smartphoneItem);
@@ -77,4 +87,15 @@ private Smartphone smartphoneItem = new Smartphone(5, "iPhone", 150000, "Apple")
         Product[] actual = manager.searchBy("iPhone");
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldReturnNothingIfDoesNotMatch() {
+        manager.add(bookItem);
+        manager.add(smartphoneItem);
+
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy("Knife");
+        assertArrayEquals(expected, actual);
+    }
+
 }
