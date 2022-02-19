@@ -67,7 +67,7 @@
                                     </excludes>
                                     <limits>
                                         <limit>
-                                            <counter>BRUNCH</counter>
+                                            <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
                                             <minimum>100%</minimum>
                                         </limit>
