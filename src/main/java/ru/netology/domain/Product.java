@@ -1,7 +1,7 @@
 package ru.netology.domain;
 
 public class Product {
-    private int id = 10;
+    private int id;
     private String name;
     private int price;
 

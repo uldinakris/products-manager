@@ -1,9 +1,12 @@
-package ru.netology.domain;
+package ru.netology.manager;
+
+import ru.netology.domain.Product;
+import ru.netology.repository.ProductsRepository;
 
 public class ProductManager {
     private ProductsRepository repository;
 
-    public ProductManager(ProductsRepository repository){
+    public ProductManager(ProductsRepository repository) {
         this.repository = repository;
     }
 
@@ -13,13 +16,10 @@ public class ProductManager {
 
     public Product[] searchBy(String query) {
         Product[] result = new Product[0];
-        for (Product item: repository.findAll()) {
+        for (Product item : repository.findAll()) {
             if (matches(item, query)) {
                 Product[] tmp = new Product[result.length + 1];
-
-                for (int i = 0; i < result.length; i++) {
-                    tmp[i] = result[i];
-                }
+                System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = item;
                 result = tmp;
             }
@@ -28,8 +28,6 @@ public class ProductManager {
     }
 
     public boolean matches(Product product, String query) {
-        String name = product.getName();
-        boolean result = name.contains(query);
-        return result;
+        return product.getName().contains(query);
     }
 }
