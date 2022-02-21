@@ -65,9 +65,8 @@ class ProductTest {
 
     @Test
     public void shouldMatch() {
-        boolean expected = true;
         boolean actual = manager.matches(bookItem, "Idiot");
-        assertTrue(true);
+        assertTrue(actual);
     }
 
     @Test
