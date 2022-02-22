@@ -1,6 +1,8 @@
 package ru.netology.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.netology.exeptions.NotFoundException;
 import ru.netology.manager.ProductManager;
 import ru.netology.repository.ProductsRepository;
 
@@ -51,6 +53,18 @@ class ProductTest {
         Product[] expected = new Product[]{smartphoneItem};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldRemoveByIdThrowException() {
+        repository.add(bookItem);
+        repository.add(smartphoneItem);
+
+        try {
+            repository.removeById(74);
+        } catch (RuntimeException ex) {
+            Assertions.assertThrows(NotFoundException.class, () -> repository.removeById(74));
+        }
     }
 
     @Test
